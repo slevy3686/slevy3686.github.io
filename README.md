@@ -5,4 +5,4 @@ CSC_2463
 - KEYBOARD: https://slevy3686.github.io/CSC_2463/Assignment6/
 - EASEL: https://slevy3686.github.io/CSC_2463/Assignment8/
 
-- ROTATING SLIDES-STYLE WEBSITE TEMPLATE: https://slevy3686.github.io/portfolio2/
+- ROTATING SLIDES-STYLE WEBSITE (TEMPLATE): https://slevy3686.github.io/portfolio2/
