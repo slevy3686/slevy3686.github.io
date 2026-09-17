@@ -6,4 +6,4 @@ CSC_2463
 - EASEL: https://slevy3686.github.io/CSC_2463/Assignment8/
 
 - https://slevy3686.github.io/portfolio/
-- https://slevy3686.github.io/portfolio2/
+- [https://slevy3686.github.io/portfolio2/](https://slevy3686.github.io/portfolio2/portfolio2/)
