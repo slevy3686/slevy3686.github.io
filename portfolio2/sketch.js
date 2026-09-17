@@ -367,7 +367,7 @@ function draw() {
       // RSlice_LinkSpace.slice2 = 6/7 of RSlice text box
 
       text(
-        "examples:", 
+        "links:", 
         RSlice_LinkSpace.slice1.x, 
         RSlice_LinkSpace.slice1.y, 
         RSlice_LinkSpace.slice1.w, 
