@@ -38,7 +38,7 @@ let navy = new colorpalette(
 );
 
 // ARRAY
-let colorPalettes = [navy, orange, purple, green];
+let colorPalettes = [navy, orange];
 
 let paletteIndex = 0;
 let current_colorpalette = colorPalettes[paletteIndex];
