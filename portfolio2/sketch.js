@@ -1,0 +1,693 @@
+// global bc need for draw() & mousepressed()
+let a, b2, c, d;
+let e1, e2, f, g;
+
+// arrow hitbox, communication between draw() & mousepressed()
+let lhitbox_x, lhitbox_y, lhitbox_w, lhitbox_h;
+let rhitbox_x, rhitbox_y, rhitbox_w, rhitbox_h;
+
+// ARROW COLOR GLOBALS
+let leftArrowColor;
+let rightArrowColor;
+
+let leftArrowClickedTime = null;
+let rightArrowClickedTime = null;
+
+let arrowFlashDuration = 350; // ms to stay highlighted
+
+let currentState;
+
+function preload() {
+  font = loadFont("media/consolas.ttf");
+  tertiary_img = loadImage("media/lsu.png");
+  linkedin_logo = loadImage("media/linkedin.png");
+  github_logo = loadImage("media/github.png");
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  colorMode(HSL);
+  angleMode(DEGREES);
+
+  // STATE
+  state_welcome = new State("welcome");
+  state_background = new State("background");
+  state_projects = new State("projects");
+  state_extras = new State("extras");
+
+  state_welcome.next = state_background;
+  state_background.next = state_projects;
+  state_projects.next = state_extras;
+  state_extras.next = state_welcome;
+
+  state_welcome.prev = state_extras;
+  state_extras.prev = state_projects;
+  state_projects.prev = state_background;
+  state_background.prev = state_welcome;
+  
+  currentState = state_welcome;
+
+  // LINK - EXAMPLES
+  link_gallery = createA("https://slevy3686.github.io/CSC_2463/Assignment1/", "gallery", "_self");
+  link_sprite = createA("https://slevy3686.github.io/CSC_2463/Assignment3/", "sprite", "_self");
+  link_bug = createA("https://slevy3686.github.io/CSC_2463/Assignment4/", "bug", "_self");
+  link_sampler = createA("https://slevy3686.github.io/CSC_2463/Assignment5/", "sampler", "_self");
+  link_keyboard = createA("https://slevy3686.github.io/CSC_2463/Assignment6/", "keyboard", "_self");
+  link_easel = createA("https://slevy3686.github.io/CSC_2463/Assignment8/", "easel", "_self");
+
+  // INITIAL COLOR PALETTE & ARROW COLOR
+  current_colorpalette = colorPalettes[paletteIndex];
+
+  leftArrowColor = current_colorpalette.accent;
+  rightArrowColor = current_colorpalette.accent;
+}
+
+function draw() {
+  let leftRightRatio = 0.0417;
+  let topRatio = 0.143;
+  let bottomRatio = 0.0417;
+  let textMarginRatio = 0.05;
+
+  let headerTextSize = windowHeight * 0.044;
+  let cornerRadius = min(windowWidth, windowHeight) * 0.03;
+
+  let strokeWidth = 3;
+  textFont(font);
+
+  let examplelinks = [
+    link_gallery,
+    link_sprite,
+    link_bug,
+    link_sampler,
+    link_keyboard,
+    link_easel
+  ];
+
+  let startbody = gen_startbody(windowWidth, windowHeight, leftRightRatio, topRatio, bottomRatio);
+  
+  //BODY
+  let rectY = windowHeight * topRatio;
+  let rectH = windowHeight * (1 - topRatio - bottomRatio);
+
+  //SPACE BETWEEN BODY HEIGHT AND WINDOW HEIGHT
+  let bottomPadding = windowHeight - (rectY + rectH);
+
+  switch(currentState) {
+    //WELCOME
+    case state_welcome:
+      background(current_colorpalette.background.h, 
+        current_colorpalette.background.s, 
+        current_colorpalette.background.l
+      );
+      
+      for (let l of examplelinks) l.hide();
+
+      fill(current_colorpalette.body.h, 
+        current_colorpalette.body.s, 
+        current_colorpalette.body.l
+      );
+
+      rect(
+        startbody.x, 
+        startbody.y, 
+        startbody.w, 
+        startbody.h, 
+        startbody.cornerRadius
+      );
+
+      // HEADER
+      noStroke();
+      fill(current_colorpalette.accent.h, 
+        current_colorpalette.accent.s, 
+        current_colorpalette.accent.l
+      );
+
+      let welcome_tb = textbox(
+        startbody.x, 
+        startbody.y, 
+        startbody.w, 
+        startbody.h,  
+        textMarginRatio
+      );
+
+      textSize(startbody.h/25);
+
+      textWrap(WORD);
+      textAlign(LEFT,TOP);
+      text(
+        `to change SLIDES:
+
+        -> L/R arrow keys
+        -> arrows at top of screen
+        
+        to change COLOR PALETTE:
+
+        -> 'C' key`, 
+        welcome_tb.x, welcome_tb.y, welcome_tb.w, welcome_tb.h
+      );
+
+      textAlign(RIGHT,BOTTOM);
+      text(
+        `© Levy 2026
+        latest update: 2/27/26`, 
+        welcome_tb.x, welcome_tb.y, welcome_tb.w, welcome_tb.h
+      );
+      
+
+      let img_size = startbody.h/12;
+
+      image(
+        linkedin_logo, welcome_tb.x, 
+        (welcome_tb.y + welcome_tb.h - img_size), 
+        img_size, img_size
+      );
+
+      image(
+        github_logo, (welcome_tb.x + (img_size * 1.5)), 
+        (welcome_tb.y + welcome_tb.h - img_size), 
+        img_size, img_size
+      );
+
+      e1 = welcome_tb.x,
+      e2 = (welcome_tb.x + (img_size * 1.5)),
+      f = (welcome_tb.y + welcome_tb.h - img_size),
+      g = img_size;
+
+      textAlign(CENTER,CENTER);
+      textSize(headerTextSize);
+      text("welcome", windowWidth/2, (windowHeight/7)/2);
+    break;
+
+    //BACKGROUND
+    case state_background: {
+      background(current_colorpalette.background.h, 
+        current_colorpalette.background.s, 
+        current_colorpalette.background.l
+      );
+
+      for (let l of examplelinks) l.hide();
+
+      let BkGr_Slice = hslice(startbody.x, startbody.y, startbody.w, startbody.h, bottomPadding, 0.2);
+      // BkGr_Slice.slice1 = top slice
+      // BkGr_Slice.slice2 = bottom slice
+
+      //DRAW SLICES
+      fill(current_colorpalette.body.h, 
+        current_colorpalette.body.s, 
+        current_colorpalette.body.l
+      );
+
+      rect(
+        BkGr_Slice.slice1.x, 
+        BkGr_Slice.slice1.y, 
+        BkGr_Slice.slice1.w, 
+        BkGr_Slice.slice1.h, 
+        cornerRadius
+      );
+      rect(
+        BkGr_Slice.slice2.x, 
+        BkGr_Slice.slice2.y, 
+        BkGr_Slice.slice2.w, 
+        BkGr_Slice.slice2.h, 
+        cornerRadius
+      );
+
+      //TEXT BOX - TOP SLICE
+      let TS_textbox = textbox(BkGr_Slice.slice1.x, BkGr_Slice.slice1.y, BkGr_Slice.slice1.w, BkGr_Slice.slice1.h, textMarginRatio);
+      
+      let h = (TS_textbox.h / 6);
+      let textA_y = (TS_textbox.y + h);
+      let textB_y = (TS_textbox.y + (h * 4));
+
+      textAlign(LEFT, TOP);
+      textWrap(WORD);
+
+      noStroke();
+      fill(current_colorpalette.accent.h, 
+        current_colorpalette.accent.s, 
+        current_colorpalette.accent.l
+      );
+
+      textSize(h/1.05);
+      text("Name: ...", TS_textbox.x, textA_y, TS_textbox.w, h);
+      text("From: ...", TS_textbox.x, textB_y, TS_textbox.w, h);
+
+      //TEXT BOX - BOTTOM SLICE
+      let BS_textbox = textbox(BkGr_Slice.slice2.x, BkGr_Slice.slice2.y, BkGr_Slice.slice2.w, BkGr_Slice.slice2.h, textMarginRatio);
+
+      //IMAGE BORDER
+      rect(
+        BS_textbox.x + strokeWidth, 
+        BS_textbox.y + strokeWidth, 
+        BS_textbox.w/4, 
+        BS_textbox.w/6
+      );
+
+      // UPDATE IMAGE DIMENSIONS GLOBAL
+      a = BS_textbox.x;
+      b2 = BS_textbox.y;
+      c = BS_textbox.w/4;
+      d = BS_textbox.w/6;
+
+      //IMAGES
+      image(
+        tertiary_img, 
+        BS_textbox.x, 
+        BS_textbox.y, 
+        BS_textbox.w/4, 
+        BS_textbox.w/6
+      );
+
+      // BOTTOM SLICE TEXT BOX - NESTED TEXT BOX CALCULATIONS
+      let w = (BS_textbox.w / 12);
+
+      let txt_x = (BS_textbox.x + (w * 6));
+      let txt_w = (w * 5);
+
+      let n = (BS_textbox.h / 14);
+
+
+      // TEXT
+      textSize(BS_textbox.h/23);
+      text(
+        "LOUISIANA STATE UNIVERSITY \n\n -> DEGREE: ... \n\n -> GRAD. YEAR: ...", 
+        txt_x, BS_textbox.y, txt_w, BS_textbox.h
+      );
+
+      // HEADER
+      textAlign(CENTER,CENTER);
+      textSize(headerTextSize);
+      text("background", windowWidth/2, (windowHeight/7)/2);
+      break;
+    }
+
+    //PROJECTS
+    case state_projects: {
+      background(current_colorpalette.background.h, 
+        current_colorpalette.background.s, 
+        current_colorpalette.background.l
+      );
+
+      for (let l of examplelinks) l.show();
+
+      // SLICES
+      let Proj_Slice = vslice(startbody.x, startbody.y, startbody.w, startbody.h, windowWidth, leftRightRatio, 0.8);
+      // Proj_Slice.slice1 = left slice
+      // Proj_Slice.slice1 = right slice
+
+      // DRAW SLICES
+      noStroke();
+      fill(current_colorpalette.body.h, 
+        current_colorpalette.body.s, 
+        current_colorpalette.body.l
+      );
+
+      rect(
+        Proj_Slice.slice1.x, 
+        Proj_Slice.slice1.y, 
+        Proj_Slice.slice1.w, 
+        Proj_Slice.slice1.h, 
+        cornerRadius
+      );
+      rect(
+        Proj_Slice.slice2.x, 
+        Proj_Slice.slice2.y, 
+        Proj_Slice.slice2.w, 
+        Proj_Slice.slice2.h, 
+        cornerRadius
+      );
+
+      // TEXTBOX (LEFT)
+      let LSlice_TB = textbox(Proj_Slice.slice1.x, Proj_Slice.slice1.y, Proj_Slice.slice1.w, Proj_Slice.slice1.h, textMarginRatio);
+
+      let line_h = (LSlice_TB.h / 5);
+
+      let line2_y = (LSlice_TB.y + line_h);
+      let line3_y = (LSlice_TB.y + (line_h * 2));
+      let line4_y = (LSlice_TB.y + (line_h * 3));
+      let line5_y = (LSlice_TB.y + (line_h * 4));
+
+      // TEXT
+      fill(current_colorpalette.accent.h, 
+        current_colorpalette.accent.s, 
+        current_colorpalette.accent.l
+      );
+      textWrap(WORD);
+      textAlign(LEFT, TOP);
+      textSize(Proj_Slice.slice1.h/40);
+
+      text(
+        "...",
+        LSlice_TB.x, LSlice_TB.y, LSlice_TB.w, LSlice_TB.h
+      );
+      text(
+        "...",
+        LSlice_TB.x, line2_y, LSlice_TB.w, LSlice_TB.h
+      );
+      text(
+        "...",
+        LSlice_TB.x, line3_y, LSlice_TB.w, LSlice_TB.h
+      );
+      text(
+        "...",
+        LSlice_TB.x, line4_y, LSlice_TB.w, LSlice_TB.h
+      );
+      text(
+        `...
+
+        ...`,
+        LSlice_TB.x, line5_y, LSlice_TB.w, LSlice_TB.h
+      );
+
+      //TEXTBOXES (RIGHT)
+      let RSlice_TB = textbox(Proj_Slice.slice2.x, Proj_Slice.slice2.y, Proj_Slice.slice2.w, Proj_Slice.slice2.h, textMarginRatio);
+
+      RSlice_LinkSpace = hslice(RSlice_TB.x, RSlice_TB.y, RSlice_TB.w, RSlice_TB.h, bottomPadding, 1/7);
+      // RSlice_LinkSpace.slice1 = 1/7 of RSlice text box
+      // RSlice_LinkSpace.slice2 = 6/7 of RSlice text box
+
+      text(
+        "webdev. \n examples:", 
+        RSlice_LinkSpace.slice1.x, 
+        RSlice_LinkSpace.slice1.y, 
+        RSlice_LinkSpace.slice1.w, 
+        RSlice_LinkSpace.slice1.h
+      );
+
+      // RSlice_LinkSpace.slice2.h = height of 5/6 of RSlice text box
+      // (RSlice_LinkSpace.slice2.h / 5) = 1/5 of height of RSlice text box = h
+      let h = (RSlice_LinkSpace.slice2.h / 6);
+
+      // Slice_LinkSpace.slice2.y = (staring y pos of) 1st 1/6 of RSlice text box
+      link_gallery.position(RSlice_TB.x, RSlice_LinkSpace.slice2.y);
+      // (Slice_LinkSpace.slice2.y + h) = (staring y pos of) 2nd 1/6 of RSlice text box
+      link_sprite.position(RSlice_TB.x, RSlice_LinkSpace.slice2.y + h);
+      // (Slice_LinkSpace.slice2.y + (h * 2)) = (staring y pos of) 3rd 1/6 of RSlice text box
+      link_bug.position(RSlice_TB.x, RSlice_LinkSpace.slice2.y + (h * 2));
+      // (Slice_LinkSpace.slice2.y + (h * 3)) = (staring y pos of) 4th 1/6 of RSlice text box
+      link_sampler.position(RSlice_TB.x, RSlice_LinkSpace.slice2.y + (h * 3));
+      // (Slice_LinkSpace.slice2.y + (h * 4)) = (staring y pos of) 5th 1/6 of RSlice text box
+      link_keyboard.position(RSlice_TB.x, RSlice_LinkSpace.slice2.y + (h * 4));
+      // (Slice_LinkSpace.slice2.y + (h * 5)) = (staring y pos of) 6th 1/6 of RSlice text box
+      link_easel.position(RSlice_TB.x, RSlice_LinkSpace.slice2.y + (h * 5));
+
+      link_gallery.style("color", current_colorpalette.highlightString);
+      link_sprite.style("color", current_colorpalette.highlightString);
+      link_bug.style("color", current_colorpalette.highlightString);
+      link_sampler.style("color", current_colorpalette.highlightString);
+      link_keyboard.style("color", current_colorpalette.highlightString);
+      link_easel.style("color", current_colorpalette.highlightString);
+
+      link_gallery.size(RSlice_LinkSpace.slice1.w, RSlice_LinkSpace.slice1.h);
+      link_sprite.size(RSlice_LinkSpace.slice1.w, RSlice_LinkSpace.slice1.h);
+      link_bug.size(RSlice_LinkSpace.slice1.w, RSlice_LinkSpace.slice1.h);
+      link_sampler.size(RSlice_LinkSpace.slice1.w, RSlice_LinkSpace.slice1.h);
+      link_keyboard.size(RSlice_LinkSpace.slice1.w, RSlice_LinkSpace.slice1.h);
+      link_easel.size(RSlice_LinkSpace.slice1.w, RSlice_LinkSpace.slice1.h);
+
+      // HEADER
+      textAlign(CENTER,CENTER);
+      textSize(headerTextSize);
+      text("projects", windowWidth/2, (windowHeight/7)/2);
+      break;
+    }
+
+    //EXTRAS
+    case state_extras: {
+      background(current_colorpalette.background.h, 
+        current_colorpalette.background.s, 
+        current_colorpalette.background.l
+      );
+
+      for (let l of examplelinks) l.hide();
+
+      // SLICES
+      let Ex_Slice = hslice(
+        startbody.x, 
+        startbody.y, 
+        startbody.w, 
+        startbody.h, 
+        bottomPadding, 
+        1/3
+      );
+      // Ex_Slice.slice1 = top 1/3 slice
+      // Ex_Slice.slice2 = bottom 2/3 slice
+
+      let Ex_Slice2 = hslice(
+        Ex_Slice.slice2.x, 
+        Ex_Slice.slice2.y, 
+        Ex_Slice.slice2.w, 
+        Ex_Slice.slice2.h, 
+        bottomPadding, 
+        1/2
+      );
+
+      // Ex_Slice2.slice1 = mid 4/3 slice
+      // Ex_Slice2.slice2 = bottom 4/3 slice
+
+      // DRAW SLICES
+      noStroke();
+      fill(current_colorpalette.body.h, 
+        current_colorpalette.body.s, 
+        current_colorpalette.body.l
+      );
+
+      rect(
+      Ex_Slice.slice1.x, 
+      Ex_Slice.slice1.y, 
+      Ex_Slice.slice1.w, 
+      Ex_Slice.slice1.h, 
+      cornerRadius
+      );
+
+      rect(
+      Ex_Slice2.slice1.x, 
+      Ex_Slice2.slice1.y, 
+      Ex_Slice2.slice1.w, 
+      Ex_Slice2.slice1.h, 
+      cornerRadius
+      );
+
+      rect(
+      Ex_Slice2.slice2.x, 
+      Ex_Slice2.slice2.y, 
+      Ex_Slice2.slice2.w, 
+      Ex_Slice2.slice2.h, 
+      cornerRadius
+      );
+
+      // TEXT BOXES
+      top_textbox = textbox(
+        Ex_Slice.slice1.x, 
+        Ex_Slice.slice1.y, 
+        Ex_Slice.slice1.w, 
+        Ex_Slice.slice1.h, 
+        textMarginRatio
+      );
+      mid_textbox = textbox(
+        Ex_Slice2.slice1.x, 
+        Ex_Slice2.slice1.y, 
+        Ex_Slice2.slice1.w, 
+        Ex_Slice2.slice1.h, 
+        textMarginRatio
+      );
+      bottom_textbox = textbox(
+        Ex_Slice2.slice2.x, 
+        Ex_Slice2.slice2.y, 
+        Ex_Slice2.slice2.w, 
+        Ex_Slice2.slice2.h, 
+        textMarginRatio
+      );
+
+      // TEXT
+      fill(current_colorpalette.accent.h, 
+        current_colorpalette.accent.s, 
+        current_colorpalette.accent.l
+      );
+
+      let z = 10;
+
+      textWrap(WORD);
+      textAlign(LEFT, TOP);      
+      textSize(top_textbox.h/z);
+
+      text(
+        `...
+
+        -> ...
+        -> ...`, 
+        top_textbox.x, top_textbox.y, top_textbox.w, top_textbox.h
+      );
+
+      textSize(mid_textbox.h/z);
+      text(
+        `...
+        
+        -> ...
+        -> ...
+        -> ...
+        -> ...`, 
+        mid_textbox.x, mid_textbox.y, mid_textbox.w, mid_textbox.h
+      );
+      text(
+        `...
+        
+        -> ...
+        -> ...`, 
+        bottom_textbox.x, bottom_textbox.y, bottom_textbox.w, bottom_textbox.h
+      );
+
+      // HEADER
+      textAlign(CENTER,CENTER);
+      textSize(headerTextSize);
+      text("extras", windowWidth/2, (windowHeight/7)/2);
+      break;
+    }
+  }
+
+  // CLICK-ABLE ARROWS
+
+  // LEFT reset
+  if (leftArrowClickedTime &&
+      millis() > leftArrowClickedTime + arrowFlashDuration) {
+    leftArrowColor = current_colorpalette.accent;
+    leftArrowClickedTime = null;
+  }
+
+  // RIGHT reset
+  if (rightArrowClickedTime &&
+      millis() > rightArrowClickedTime + arrowFlashDuration) {
+    rightArrowColor = current_colorpalette.accent;
+    rightArrowClickedTime = null;
+  }
+
+  let left_arrow = larrow(
+    startbody.x, 
+    startbody.y, 
+    startbody.w, 
+    windowHeight, 
+    bottomPadding
+  );
+  let right_arrow = rarrow(
+    startbody.x, 
+    startbody.y, 
+    startbody.w, 
+    windowHeight, 
+    bottomPadding
+  );
+
+  fill(
+    leftArrowColor.h, 
+    leftArrowColor.s, 
+    leftArrowColor.l
+  );
+  triangle(
+    left_arrow.top.x,
+    left_arrow.top.y,
+    left_arrow.tip.x,
+    left_arrow.tip.y,
+    left_arrow.bottom.x,
+    left_arrow.bottom.y
+  );
+
+  fill(
+    rightArrowColor.h, 
+    rightArrowColor.s, 
+    rightArrowColor.l
+  );
+  triangle(
+    right_arrow.top.x,
+    right_arrow.top.y,
+    right_arrow.tip.x,
+    right_arrow.tip.y,
+    right_arrow.bottom.x,
+    right_arrow.bottom.y
+  );
+
+  // ARROW HIT BOXES
+  let l_hitbox = hitbox(left_arrow);
+  let r_hitbox = hitbox(right_arrow);
+
+  lhitbox_x = l_hitbox.x;
+  lhitbox_y = l_hitbox.y;
+  lhitbox_w = l_hitbox.w;
+  lhitbox_h = l_hitbox.h;
+
+  rhitbox_x = r_hitbox.x;
+  rhitbox_y = r_hitbox.y;
+  rhitbox_w = r_hitbox.w;
+  rhitbox_h = r_hitbox.h;
+}
+
+function keyPressed() {
+  if (keyCode === LEFT_ARROW) {
+    leftArrowColor = current_colorpalette.highlight;
+    leftArrowClickedTime = millis();
+
+    currentState = currentState.prev;
+
+    tick.start();
+  }
+  if (keyCode === RIGHT_ARROW) {
+    rightArrowColor = current_colorpalette.highlight;
+    rightArrowClickedTime = millis();
+
+    currentState = currentState.next;
+
+    tick.start();
+  }
+
+  if (key.toUpperCase() === 'C') {
+    paletteIndex++;
+
+    if (paletteIndex >= colorPalettes.length) paletteIndex = 0;
+    current_colorpalette = colorPalettes[paletteIndex];
+
+    leftArrowColor = current_colorpalette.accent;
+    rightArrowColor = current_colorpalette.accent;
+  }
+}
+
+function mouseClicked() {
+  // CLICK LOGO
+  if (currentState === state_welcome) {
+    if (mouseX > e1 && mouseX < e1 + g &&
+        mouseY > f && mouseY < f + g) {
+      window.open("https://www.linkedin.com/in/stella-levy-8431b13b4", "_self");
+    }
+
+    if (mouseX > e2 && mouseX < e2 + g &&
+        mouseY > f && mouseY < f + g) {
+      window.open("https://github.com/slevy3686", "_self");
+    }
+  }
+
+  //CLICK IMAGE
+  if (currentState === state_background) {
+    if (mouseX > a && mouseX < a + c &&
+        mouseY > b2 && mouseY < b2 + d) {
+      window.open("https://www.lsu.edu/", "_self");
+    }
+  }
+
+  // CLICK ARROWS
+  if (mouseX > lhitbox_x && mouseX < lhitbox_x + lhitbox_w 
+    && mouseY > lhitbox_y && mouseY < lhitbox_y + lhitbox_h) {
+      leftArrowColor = current_colorpalette.highlight;
+      leftArrowClickedTime = millis();
+
+      currentState = currentState.prev;
+
+      tick.start();
+    }
+
+  if (mouseX > rhitbox_x && mouseX < rhitbox_x + rhitbox_w 
+    && mouseY > rhitbox_y && mouseY < rhitbox_y + rhitbox_h) {
+      rightArrowColor = current_colorpalette.highlight;
+      rightArrowClickedTime = millis();
+
+      currentState = currentState.next;
+
+      tick.start();
+    }
+}
