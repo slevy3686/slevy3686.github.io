@@ -1,3 +1,0 @@
-link_tertiary.position(lnk_x, lnk2_y);
-      link_tertiary.size(bdr_w, n);
-      link_tertiary.style("color", current_colorpalette.highlightString);
