@@ -48,12 +48,12 @@ function setup() {
   currentState = state_welcome;
 
   // LINK - EXAMPLES
-  link_gallery = createA("https://slevy3686.github.io/CSC_2463/Assignment1/", "gallery", "_self");
-  link_sprite = createA("https://slevy3686.github.io/CSC_2463/Assignment3/", "sprite", "_self");
-  link_bug = createA("https://slevy3686.github.io/CSC_2463/Assignment4/", "bug", "_self");
-  link_sampler = createA("https://slevy3686.github.io/CSC_2463/Assignment5/", "sampler", "_self");
-  link_keyboard = createA("https://slevy3686.github.io/CSC_2463/Assignment6/", "keyboard", "_self");
-  link_easel = createA("https://slevy3686.github.io/CSC_2463/Assignment8/", "easel", "_self");
+  link_gallery = createA("https://www.google.com/", "google", "_self");
+  link_sprite = createA("https://www.google.com/", "google", "_self");
+  link_bug = createA("https://www.google.com/", "google", "_self");
+  link_sampler = createA("https://www.google.com/", "google", "_self");
+  link_keyboard = createA("https://www.google.com/", "google", "_self");
+  link_easel = createA("https://www.google.com/", "google", "_self");
 
   // INITIAL COLOR PALETTE & ARROW COLOR
   current_colorpalette = colorPalettes[paletteIndex];
@@ -149,7 +149,7 @@ function draw() {
       textAlign(RIGHT,BOTTOM);
       text(
         `© Levy 2026
-        latest update: 2/27/26`, 
+        latest update: 10/17/2026`, 
         welcome_tb.x, welcome_tb.y, welcome_tb.w, welcome_tb.h
       );
       
@@ -367,7 +367,7 @@ function draw() {
       // RSlice_LinkSpace.slice2 = 6/7 of RSlice text box
 
       text(
-        "webdev. \n examples:", 
+        "examples:", 
         RSlice_LinkSpace.slice1.x, 
         RSlice_LinkSpace.slice1.y, 
         RSlice_LinkSpace.slice1.w, 
