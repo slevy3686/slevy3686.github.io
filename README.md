@@ -4,7 +4,7 @@ Table of Contents
 - Virtual Keyboard
 - Browser Canvas
 
-Website Template
+Website Template (filepath: portfolio)
 What is it?
 
 A template for a minimal website where pages function like a horizontal slideshow, presented via a retro, terminal-inspired visual language.
@@ -21,7 +21,7 @@ Strongest design points:
 
 Try it Yourself: https://slevy3686.github.io/portfolio/
 
-Bug-Squashing Game
+Bug-Squashing Game (filepath: )
 What is it?
 
 (demo vid)
@@ -30,7 +30,7 @@ Strongest design points
 
 Try it yourself: https://slevy3686.github.io/CSC_2463/Assignment4/
 
-Virtual Keyboard
+Virtual Keyboard (filepath: )
 What is it?
 
 (demo vid)
@@ -39,7 +39,7 @@ Strongest design points
 
 Try it yourself: https://slevy3686.github.io/CSC_2463/Assignment6/
 
-Browser Canvas
+Browser Canvas (filepath: )
 What is it?
 
 (demo vid)
