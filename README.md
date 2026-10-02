@@ -1,10 +1,3 @@
-# slevy3686.github.io
-
-CSC_2463
-- BUG: https://slevy3686.github.io/CSC_2463/Assignment4/
-- KEYBOARD: https://slevy3686.github.io/CSC_2463/Assignment6/
-- EASEL: https://slevy3686.github.io/CSC_2463/Assignment8/
-
 Table of Contents
 - Website Template
 - Bug-Squashing Game
@@ -14,9 +7,9 @@ Table of Contents
 Website Template
 What is it?
 
-(demo vid)
-
 A template for a minimal website where pages function like a horizontal slideshow, presented via a retro, terminal-inspired visual language.
+
+(demo vid)
 
 Strongest design points:
 
@@ -27,3 +20,30 @@ Strongest design points:
 - Separation of concerns: drawing, geometry, color configuration, and interaction logic are kept in separate libraries/files.
 
 Try it Yourself: https://slevy3686.github.io/portfolio/
+
+Bug-Squashing Game
+What is it?
+
+(demo vid)
+
+Strongest design points
+
+Try it yourself: https://slevy3686.github.io/CSC_2463/Assignment4/
+
+Virtual Keyboard
+What is it?
+
+(demo vid)
+
+Strongest design points
+
+Try it yourself: https://slevy3686.github.io/CSC_2463/Assignment6/
+
+Browser Canvas
+What is it?
+
+(demo vid)
+
+Strongest design points
+
+Try it yourself: https://slevy3686.github.io/CSC_2463/Assignment8/
