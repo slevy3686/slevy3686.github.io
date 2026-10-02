@@ -37,24 +37,8 @@ let navy = new colorpalette(
   353,86,54
 );
 
-// https://coolors.co/palette/3c1642-086375-1dd3b0-affc41
-let green = new colorpalette(
-  168, 76, 47,
-  85, 97, 62,
-  190, 87, 25,
-  292, 50, 17
-);
-
-// https://coolors.co/palette/6f1d1b-bb9457-432818-99582a
-let purple = new colorpalette(
-  256, 52, 50,
-  197, 94, 79,
-  269, 75, 31,
-  237, 63, 71
-);
-
 // ARRAY
-let colorPalettes = [navy, orange, purple, green];
+let colorPalettes = [navy, orange];
 
 let paletteIndex = 0;
 let current_colorpalette = colorPalettes[paletteIndex];
