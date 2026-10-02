@@ -48,12 +48,12 @@ function setup() {
   currentState = state_welcome;
 
   // LINK - EXAMPLES
-  link_gallery = createA("https://slevy3686.github.io/CSC_2463/Assignment1/", "gallery", "_self");
-  link_sprite = createA("https://slevy3686.github.io/CSC_2463/Assignment3/", "sprite", "_self");
-  link_bug = createA("https://slevy3686.github.io/CSC_2463/Assignment4/", "bug", "_self");
-  link_sampler = createA("https://slevy3686.github.io/CSC_2463/Assignment5/", "sampler", "_self");
-  link_keyboard = createA("https://slevy3686.github.io/CSC_2463/Assignment6/", "keyboard", "_self");
-  link_easel = createA("https://slevy3686.github.io/CSC_2463/Assignment8/", "easel", "_self");
+  link_gallery = createA("https://www.google.com/", "google", "_self");
+  link_sprite = createA("https://www.google.com/", "google", "_self");
+  link_bug = createA("https://www.google.com/", "google", "_self");
+  link_sampler = createA("https://www.google.com/", "google", "_self");
+  link_keyboard = createA("https://www.google.com/", "google", "_self");
+  link_easel = createA("https://www.google.com/", "google", "_self");
 
   // INITIAL COLOR PALETTE & ARROW COLOR
   current_colorpalette = colorPalettes[paletteIndex];
@@ -229,8 +229,8 @@ function draw() {
       );
 
       textSize(h/1.05);
-      text("Name: S.J. Levy", TS_textbox.x, textA_y, TS_textbox.w, h);
-      text("From: LAFAYETTE (LA); NEW IBERIA (LA)", TS_textbox.x, textB_y, TS_textbox.w, h);
+      text("Name: ___", TS_textbox.x, textA_y, TS_textbox.w, h);
+      text("From: ___", TS_textbox.x, textB_y, TS_textbox.w, h);
 
       //TEXT BOX - BOTTOM SLICE
       let BS_textbox = textbox(BkGr_Slice.slice2.x, BkGr_Slice.slice2.y, BkGr_Slice.slice2.w, BkGr_Slice.slice2.h, textMarginRatio);
@@ -270,7 +270,7 @@ function draw() {
       // TEXT
       textSize(BS_textbox.h/23);
       text(
-        "LOUISIANA STATE UNIVERSITY \n\n -> DEGREE: BA in Computer Science (Software Engineering) \n\n -> GRAD. YEAR: Fall, 2026", 
+        "LOUISIANA STATE UNIVERSITY \n\n -> DEGREE: ___) \n\n -> GRAD. YEAR: ___", 
         txt_x, BS_textbox.y, txt_w, BS_textbox.h
       );
 
@@ -337,25 +337,25 @@ function draw() {
       textSize(Proj_Slice.slice1.h/40);
 
       text(
-        "PYTHON: higher-level math, physics, geometry, statistics etc. calculators and/or simulators",
+        "___",
         LSlice_TB.x, LSlice_TB.y, LSlice_TB.w, LSlice_TB.h
       );
       text(
-        "SQL: creation of a database (schema & query design)",
+        "___",
         LSlice_TB.x, line2_y, LSlice_TB.w, LSlice_TB.h
       );
       text(
-        "JAVA, JLEX: tiger compiler (lexer, parser, semantic analyzer, type-checker, register allocation)",
+        "___",
         LSlice_TB.x, line3_y, LSlice_TB.w, LSlice_TB.h
       );
       text(
-        "JAVASCRIPT: various web-dev projects (some examples to the right), including communication between browser & external hardware (arduino)",
+        "___",
         LSlice_TB.x, line4_y, LSlice_TB.w, LSlice_TB.h
       );
       text(
-        `C: various projects involving...
+        `___
 
-        process/thread creation, scheduling, management, error handling, library creation, dynamic linking, scripting, file permissions, etc.`,
+        ___`,
         LSlice_TB.x, line5_y, LSlice_TB.w, LSlice_TB.h
       );
 
@@ -512,28 +512,28 @@ function draw() {
       textSize(top_textbox.h/z);
 
       text(
-        `OTHER EXPERIENCE:
+        `___
 
-        -> individually/independently produced a micro-documentary (video editing/directing)
-        -> 8 months of service-industry experience (multi-tasking/pacing)`, 
+        -> ___
+        -> ___`, 
         top_textbox.x, top_textbox.y, top_textbox.w, top_textbox.h
       );
 
       textSize(mid_textbox.h/z);
       text(
-        `OTHER (CS) AREAS OF INTEREST:
+        `___
         
-        -> audio engineering
-        -> 3d digital modeling, texturing, animation
-        -> LLM training
-        -> (ethical) offensive & defensive cybersecurity`, 
+        -> ___
+        -> ___
+        -> ___
+        -> ___`, 
         mid_textbox.x, mid_textbox.y, mid_textbox.w, mid_textbox.h
       );
       text(
-        `OTHER (NON-CS) AREAS OF INTEREST:
+        `___
         
-        -> climatology/meteorology
-        -> microbiology`, 
+        -> ___
+        -> ___`, 
         bottom_textbox.x, bottom_textbox.y, bottom_textbox.w, bottom_textbox.h
       );
 
