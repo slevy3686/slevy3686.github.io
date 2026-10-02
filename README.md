@@ -21,7 +21,7 @@ Strongest design points:
 
 Try it Yourself: https://slevy3686.github.io/portfolio/
 
-Bug-Squashing Game (filepath: )
+Bug-Squashing Game (filepath: CSC_2463/Assignment4)
 What is it?
 
 (demo vid)
@@ -30,7 +30,7 @@ Strongest design points
 
 Try it yourself: https://slevy3686.github.io/CSC_2463/Assignment4/
 
-Virtual Keyboard (filepath: )
+Virtual Keyboard (filepath: CSC_2463/Assignment6)
 What is it?
 
 (demo vid)
@@ -39,7 +39,7 @@ Strongest design points
 
 Try it yourself: https://slevy3686.github.io/CSC_2463/Assignment6/
 
-Browser Canvas (filepath: )
+Browser Canvas (filepath: CSC_2463/Assignment8)
 What is it?
 
 (demo vid)
