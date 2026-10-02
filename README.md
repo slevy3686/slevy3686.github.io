@@ -40,10 +40,14 @@ Try it yourself: https://slevy3686.github.io/CSC_2463/Assignment4/
 
 Virtual Keyboard (filepath: CSC_2463/Assignment6)
 What is it?
+A browser-based keyboard synthesizer where computer keys correspond to musical notes. Includes adjustable delay, feedback, distortion, and reverb effects, along with a short melody to play.
 
 (demo vid)
 
 Strongest design points
+- Used Tone.PolySynth to allow multiple notes to be played at once.
+- Used sliders to adjust audio effect parameters while the synthesizer is running.
+- Used separate key press and key release events to control when notes begin and end.
 
 Try it yourself: https://slevy3686.github.io/CSC_2463/Assignment6/
 
