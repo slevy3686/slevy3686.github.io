@@ -13,7 +13,7 @@
 
 - A template for a minimal website where pages function like a horizontal slideshow, presented via a retro, terminal-inspired visual language.
 
-**(Demo video)**
+https://github.com/user-attachments/assets/3ffe5d38-c389-4bab-b762-46647ab59d04
 
 ### Strongest Design Points
 
