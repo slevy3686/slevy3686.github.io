@@ -64,7 +64,7 @@ https://slevy3686.github.io/CSC_2463/Assignment4/
 
 - Used `Tone.PolySynth` to allow multiple notes to be played at once.
 - Used sliders to adjust audio effect parameters while the synthesizer is running.
-- Used separate key press and key release events to control when notes begin and end.
+- Used separate `key press` and `key release` events to control when notes begin and end.
 
 ### Try it Yourself
 
