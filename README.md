@@ -37,7 +37,7 @@ https://slevy3686.github.io/portfolio/
 
 - Browser game featuring moving bugs that can be clicked on to "squash." The player has 30 seconds to earn points, with bug speed increasing after each successful click.
 
-**(Demo video)**
+https://github.com/user-attachments/assets/4518b60e-86c1-4bd8-b0ec-f8d9ff93fd6d
 
 ### Strongest Design Points
 
