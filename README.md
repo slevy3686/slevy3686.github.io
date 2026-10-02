@@ -25,10 +25,16 @@ https://slevy3686.github.io/portfolio/
 
 Bug-Squashing Game (filepath: CSC_2463/Assignment4)
 What is it?
+Browser game featuring moving bugs that can be clicked on to "squash". The player has 30 seconds to earn points, with bug speed increasing after each successful click.
 
 (demo vid)
 
 Strongest design points
+1. Made bugs change direction at timed intervals and reverse direction when reaching the edge of the screen.
+2. Used bug animation states to switch between movement animations and a unique squashing animation when clicked.
+3. Bug movement speed increases as the player squashes bugs.
+4. Implemented bounding-box detection to determine when a bug is clicked.
+
 
 Try it yourself: https://slevy3686.github.io/CSC_2463/Assignment4/
 
