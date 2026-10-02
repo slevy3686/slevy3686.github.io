@@ -53,9 +53,14 @@ Try it yourself: https://slevy3686.github.io/CSC_2463/Assignment6/
 
 Browser Canvas (filepath: CSC_2463/Assignment8)
 What is it?
+An interactive browser easel and color palette. Clicking a color selects the drawing color, while dragging across the canvas draws lines and changes the background noise's filter and stereo panning based on the mouse position.
 
 (demo vid)
 
 Strongest design points
+
+- Mapped the mouse position to control the music's filter frequency and stereo panning.
+- Increased the music's tempo when the user interacts with the canvas.
+- Used color selection to trigger sound effects while setting the drawing color (and theere should be a sound effect when you clear the canvas).
 
 Try it yourself: https://slevy3686.github.io/CSC_2463/Assignment8/
