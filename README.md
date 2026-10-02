@@ -78,7 +78,7 @@ https://slevy3686.github.io/CSC_2463/Assignment6/
 
 - An interactive browser easel and color palette. Clicking a color selects the drawing color, while dragging across the canvas draws lines and changes the background noise's filter and stereo panning based on the mouse position.
 
-**(Demo video)**
+https://github.com/user-attachments/assets/efc4b25e-8ea1-4120-9bf2-7c7d7724517d
 
 ### Strongest Design Points
 
