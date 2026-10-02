@@ -19,7 +19,9 @@ Strongest design points:
 - Centralized color system: palettes are represented as reusable colorpalette objects, allowing the entire interface to change palettes consistently.
 - Separation of concerns: drawing, geometry, color configuration, and interaction logic are kept in separate libraries/files.
 
-Try it Yourself: https://slevy3686.github.io/portfolio/
+Try it Yourself:
+note: images are linked/clickable!
+https://slevy3686.github.io/portfolio/
 
 Bug-Squashing Game (filepath: CSC_2463/Assignment4)
 What is it?
