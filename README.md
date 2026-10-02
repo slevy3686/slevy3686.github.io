@@ -1,66 +1,91 @@
-Table of Contents
-- Website Template
-- Bug-Squashing Game
-- Virtual Keyboard
-- Browser Canvas
+## Table of Contents
 
-Website Template (filepath: portfolio)
-What is it?
+- [Website Template](#website-template)
+- [Bug-Squashing Game](#bug-squashing-game)
+- [Virtual Keyboard](#virtual-keyboard)
+- [Browser Canvas](#browser-canvas)
 
-A template for a minimal website where pages function like a horizontal slideshow, presented via a retro, terminal-inspired visual language.
+## Website Template
 
-(demo vid)
+**Filepath:** `portfolio`
 
-Strongest design points:
+### What is it?
 
-- Reusable geometry libraries: bodylib.js, slicelib.js, and arrowlib.js separate layout calculations from rendering.
-- Responsive design: dimensions and spacing are calculated from windowWidth/windowHeight ratios rather than fixed pixel values.
-- State-based navigation: pages are represented as linked State objects with explicit prev/next relationships.
-- Centralized color system: palettes are represented as reusable colorpalette objects, allowing the entire interface to change palettes consistently.
-- Separation of concerns: drawing, geometry, color configuration, and interaction logic are kept in separate libraries/files.
+- A template for a minimal website where pages function like a horizontal slideshow, presented via a retro, terminal-inspired visual language.
 
-Try it Yourself:
-note: images are linked/clickable!
+**(Demo video)**
+
+### Strongest Design Points
+
+- **Reusable geometry libraries:** `bodylib.js`, `slicelib.js`, and `arrowlib.js` separate layout calculations from rendering.
+- **Responsive design:** Dimensions and spacing are calculated from `windowWidth`/`windowHeight` ratios rather than fixed pixel values.
+- **State-based navigation:** Pages are represented as linked `State` objects with explicit previous/next relationships.
+- **Centralized color system:** Palettes are represented as reusable `ColorPalette` objects, allowing the entire interface to change palettes consistently.
+- **Separation of concerns:** Drawing, geometry, color configuration, and interaction logic are kept in separate libraries/files.
+
+### Try it Yourself
+
+> **NOTE:** Images are linked/clickable!
+
 https://slevy3686.github.io/portfolio/
 
-Bug-Squashing Game (filepath: CSC_2463/Assignment4)
-What is it?
-Browser game featuring moving bugs that can be clicked on to "squash". The player has 30 seconds to earn points, with bug speed increasing after each successful click.
+## Bug-Squashing Game
 
-(demo vid)
+**Filepath:** `CSC_2463/Assignment4`
 
-Strongest design points
+### What is it?
+
+- Browser game featuring moving bugs that can be clicked on to "squash." The player has 30 seconds to earn points, with bug speed increasing after each successful click.
+
+**(Demo video)**
+
+### Strongest Design Points
+
 1. Made bugs change direction at timed intervals and reverse direction when reaching the edge of the screen.
 2. Used bug animation states to switch between movement animations and a unique squashing animation when clicked.
 3. Bug movement speed increases as the player squashes bugs.
 4. Implemented bounding-box detection to determine when a bug is clicked.
 
+### Try it Yourself
 
-Try it yourself: https://slevy3686.github.io/CSC_2463/Assignment4/
+https://slevy3686.github.io/CSC_2463/Assignment4/
 
-Virtual Keyboard (filepath: CSC_2463/Assignment6)
-What is it?
-A browser-based keyboard synthesizer where computer keys correspond to musical notes. Includes adjustable delay, feedback, distortion, and reverb effects, along with a short melody to play.
+## Virtual Keyboard
 
-(demo vid)
+**Filepath:** `CSC_2463/Assignment6`
 
-Strongest design points
-- Used Tone.PolySynth to allow multiple notes to be played at once.
+### What is it?
+
+- A browser-based keyboard synthesizer where computer keys correspond to musical notes. Includes adjustable delay, feedback, distortion, and reverb effects, along with a short melody to play.
+
+**(Demo video)**
+
+### Strongest Design Points
+
+- Used `Tone.PolySynth` to allow multiple notes to be played at once.
 - Used sliders to adjust audio effect parameters while the synthesizer is running.
 - Used separate key press and key release events to control when notes begin and end.
 
-Try it yourself: https://slevy3686.github.io/CSC_2463/Assignment6/
+### Try it Yourself
 
-Browser Canvas (filepath: CSC_2463/Assignment8)
-What is it?
-An interactive browser easel and color palette. Clicking a color selects the drawing color, while dragging across the canvas draws lines and changes the background noise's filter and stereo panning based on the mouse position.
+https://slevy3686.github.io/CSC_2463/Assignment6/
 
-(demo vid)
+## Browser Canvas
 
-Strongest design points
+**Filepath:** `CSC_2463/Assignment8`
+
+### What is it?
+
+- An interactive browser easel and color palette. Clicking a color selects the drawing color, while dragging across the canvas draws lines and changes the background noise's filter and stereo panning based on the mouse position.
+
+**(Demo video)**
+
+### Strongest Design Points
 
 - Mapped the mouse position to control the music's filter frequency and stereo panning.
 - Increased the music's tempo when the user interacts with the canvas.
-- Used color selection to trigger sound effects while setting the drawing color (and theere should be a sound effect when you clear the canvas).
+- Used color selection to trigger sound effects while setting the drawing color, including a sound effect when clearing the canvas.
 
-Try it yourself: https://slevy3686.github.io/CSC_2463/Assignment8/
+### Try it Yourself
+
+https://slevy3686.github.io/CSC_2463/Assignment8/
