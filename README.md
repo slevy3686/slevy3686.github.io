@@ -58,7 +58,7 @@ https://slevy3686.github.io/CSC_2463/Assignment4/
 
 - A browser-based keyboard synthesizer where computer keys correspond to musical notes. Includes adjustable delay, feedback, distortion, and reverb effects, along with a short melody to play.
 
-**(Demo video)**
+https://github.com/user-attachments/assets/ba4a6a37-3c3a-4d7a-89a7-199be463c522
 
 ### Strongest Design Points
 
